@@ -69,15 +69,17 @@ die_on_error
 # new OS, so that they will be available after restart
 mkdir $MOUNTDIR/conf
 mkdir $MOUNTDIR/inc
-cp ./inc/* $MOUNTDIR/inc
+cp ./inc/*.sh $MOUNTDIR/inc
 die_on_error
-cp ./conf/* $MOUNTDIR/conf
+cp ./conf/*.cfg $MOUNTDIR/conf
+die_on_error
+cp ./conf/*.sh $MOUNTDIR/conf
 die_on_error
 cp ./postinstall.sh $MOUNTDIR
 die_on_error
-chmod a+x $MOUNTDIR/*.sh
-die_on_error
 chmod a+x $MOUNTDIR/inc/*.sh
+die_on_error
+chmod a+x $MOUNTDIR/conf/*.sh
 die_on_error
 chmod a+x $MOUNTDIR/postinstall.sh
 die_on_error
@@ -99,7 +101,9 @@ mkdir -p $WORKDIR
 die_on_error
 
 message "Copy configuration files into $WORKDIR"
-cp ./conf/* $WORKDIR
+cp ./conf/*.cfg $WORKDIR
+die_on_error
+cp ./conf/*.sh $WORKDIR
 die_on_error
 
 message "Cd'ing into $WORKDIR"
