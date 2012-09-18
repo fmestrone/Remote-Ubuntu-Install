@@ -107,3 +107,8 @@ message "Checking for new versions of any installed packages"
 apt-get -u -y upgrade
 die_on_error
 proceed
+
+# if you need to reconfigure Grub2 after this
+# use blkid to find out UUIDs of drives, then
+#  dpkg-reconfigure grub-pc
+# then change /mnt/ubuntu/boot/grub/grub.cfg with the UUID you want

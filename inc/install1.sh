@@ -197,5 +197,12 @@ die_on_error
 mount -t devpts devpts $MOUNTDIR/dev/pts
 die_on_error
 
+# if it fails after this point
+#  umount /mnt/ubuntu/dev/pts
+#  umount /mnt/ubuntu/dev
+#  umount -t proc /mnt/ubuntu/proc
+# then kill processes using $SYS_PARTITION ( use fuser -m $SYS_PARTITION )
+#  umount /mnt/ubuntu
+
 proceed
 
