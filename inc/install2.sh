@@ -97,6 +97,12 @@ die_on_error
 proceed
 
 
+message "Installing the binutils, zip, unzip, and vim packages"
+apt-get -y install binutils zip unzip vim
+die_on_error
+proceed
+
+
 message "Installing GRUB2"
 apt-get -y install grub-pc
 die_on_error
