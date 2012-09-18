@@ -1,13 +1,13 @@
 #!/bin/bash
 
 
-. ./_functions.sh
+. ./inc/functions.sh
 
 
 # set environment variables again because we are in a chroot environment
 
 message "Loading environment variables from your configuration options"
-. ./configuration.sh
+. ./conf/configuration.sh
 proceed
 
 

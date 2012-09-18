@@ -67,11 +67,19 @@ die_on_error
 
 # Copy all of the required script and text files to what will become the root of the
 # new OS, so that they will be available after restart
-cp *.sh $MOUNTDIR
+mkdir $MOUNTDIR/conf
+mkdir $MOUNTDIR/inc
+cp ./inc/* $MOUNTDIR/inc
 die_on_error
-cp *.cfg $MOUNTDIR
+cp ./conf/* $MOUNTDIR/conf
+die_on_error
+cp ./postinstall.sh $MOUNTDIR
 die_on_error
 chmod a+x $MOUNTDIR/*.sh
+die_on_error
+chmod a+x $MOUNTDIR/inc/*.sh
+die_on_error
+chmod a+x $MOUNTDIR/postinstall.sh
 die_on_error
 
 proceed
@@ -91,7 +99,7 @@ mkdir -p $WORKDIR
 die_on_error
 
 message "Copy configuration files into $WORKDIR"
-cp *.cfg $WORKDIR
+cp ./conf/* $WORKDIR
 die_on_error
 
 message "Cd'ing into $WORKDIR"
@@ -136,7 +144,7 @@ message "Base system was installed. Now setting up the network"
 # Configuring /etc/network/interfaces
 
 message "Creating $MOUNTDIR/etc/network/interfaces"
-cat ./conf/interfaces.cfg > $MOUNTDIR/etc/network/interfaces
+cat interfaces.cfg > $MOUNTDIR/etc/network/interfaces
 die_on_error
 proceed
 

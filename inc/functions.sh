@@ -16,8 +16,11 @@ function die_on_error() {
 
 function proceed() {
 	echo "      ---> OK"
+	if $ALWAYS_PRESS_KEY ; then
+		echo "      Now press a key to continue..."
+		read -s -n 1
+	fi
 	echo
-	read -s -n 1
 }
 
 function message() {

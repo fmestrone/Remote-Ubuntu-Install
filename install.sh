@@ -18,11 +18,12 @@ WELCOME!
 This script will remotely install Ubuntu on your server.
 
 You will need the 'ar' command installed on your system in
-order to extract the Debian bootstrap files.
+order to extract the Debian bootstrap files (if you don't
+have it, install it with "sudo apt-get install binutils").
 
-Make sure you edit 'configuration.sh' and verify that the
-SYS_PARTITION and SWP_PARTITION variables are pointing to
-the correct partitions!
+Make sure you edit 'conf/configuration.sh' and verify that
+the SYS_PARTITION and SWP_PARTITION variables are pointing
+to the correct partitions!
 
 Also verify that all of the other settings are correct
 for your system.
@@ -63,7 +64,7 @@ the newly configured Ubuntu system.
 
 The installation script will now run the second phase,
 during which an appropriate kernel will be downloaded
-and configured, together with OpenSSH and GRUB.
+and configured, together with OpenSSH and GRUB2.
 
 After this you will be ready to reboot.
 phase1
@@ -77,7 +78,7 @@ echo "UBUNTU REMOTE INSTALL - ENTERING PHASE 2"
 
 # put the shell into chroot environment
 
-sudo /usr/sbin/chroot /mnt/ubuntu /usr/bin/env -i HOME=/root TERM=$TERM PS1='\u:\w\$ ' PATH=/bin:/usr/bin:/sbin:/usr/sbin /bin/bash --login ./_install2.sh
+sudo /usr/sbin/chroot /mnt/ubuntu /usr/bin/env -i HOME=/root TERM=$TERM PS1='\u:\w\$ ' PATH=/bin:/usr/bin:/sbin:/usr/sbin /bin/bash --login ./inc/install2.sh
 rv=$?
 
 echo "UBUNTU REMOTE INSTALL - PHASE 2 HAS EXITED"

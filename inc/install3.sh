@@ -1,13 +1,13 @@
 #!/bin/bash
 
 
-. /_functions.sh
+. /inc/functions.sh
 
 
 # set environment variables again because we are in a chroot environment
 
 message "Loading environment variables from your configuration options"
-. /configuration.sh
+. /conf/configuration.sh
 proceed
 
 
@@ -53,6 +53,12 @@ die_on_error
 proceed
 
 
+message "Installing the tasksel package for the next step"
+apt-get -y install tasksel
+die_on_error
+proceed
+
+
 message "Now select the preset installation you would like to make"
 tasksel
 die_on_error
@@ -66,23 +72,7 @@ proceed
 
 
 message "Preparing your iptables firewall and setting it to load at boot"
-(
-cat <<"iptables"
-*filter
-:INPUT DROP [27:2064]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [2007:270846]
-:SSH_CHECK - [0:0]
--A INPUT -p tcp -m tcp --dport 80 -m state --state NEW -j ACCEPT 
--A INPUT -p tcp -m tcp --dport 22 -m state --state NEW -j SSH_CHECK 
--A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT 
--A SSH_CHECK -m recent --set --name SSH --rsource 
--A SSH_CHECK -m recent --update --seconds 60 --hitcount 4 --name SSH --rsource -j DROP 
--A SSH_CHECK -j ACCEPT 
-COMMIT
-iptables
-) > /etc/iptables
-
+cat /conf/iptables.cfg > /etc/iptables
 die_on_error
 echo "pre-up iptables-restore < /etc/iptables" >> /etc/network/interfaces
 die_on_error
@@ -97,7 +87,7 @@ die_on_error
 proceed
 
 
-message "Defining a few convenient alias in /etc/profile"
+message "Defining a few convenient aliases in /etc/profile"
 echo "alias ll='ls -lFh --color=auto'" >> /etc/profile
 die_on_error
 echo "alias la='ls -lAFh --color=auto'" >> /etc/profile
@@ -106,9 +96,11 @@ proceed
 
 
 message "Cleaning up temporary files"
-rm -f /*.cfg
+rm -Rf /inc
 die_on_error
-rm -f /*.sh
+rm -Rf /conf
+die_on_error
+rm -f /postinstall.sh
 die_on_error
 proceed
 

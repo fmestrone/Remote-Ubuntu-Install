@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-. /_functions.sh
+. /inc/functions.sh
 
 
-. /configuration.sh
+. /conf/configuration.sh
 
 
 # welcome message and prompt
@@ -42,7 +42,7 @@ clear
 
 echo "UBUNTU REMOTE INSTALL - ENTERING PHASE 3"
 
-sudo /_install3.sh
+sudo /inc/install3.sh
 rv=$?
 
 echo "UBUNTU REMOTE INSTALL - PHASE 3 HAS EXITED"
