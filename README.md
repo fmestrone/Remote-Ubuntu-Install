@@ -14,6 +14,10 @@ Requirements
 
 What you need
 
+- two bootable partitions
+  * (1) one to boot into and build the new system from
+  * (2) one for the new system
+  * when the new system is ready, the script will change the boot drive from the former (1) to the latter (2)
 - SSH access to your server
 - root or sudo privileges
 - the scripts from this project ;-)
