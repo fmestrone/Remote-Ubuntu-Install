@@ -74,7 +74,7 @@ proceed
 message "Preparing your iptables firewall and setting it to load at boot"
 cat /conf/iptables.cfg > /etc/iptables
 die_on_error
-echo "pre-up iptables-restore < /etc/iptables" >> /etc/network/interfaces
+echo -e "\n\npre-up iptables-restore < /etc/iptables" >> /etc/network/interfaces
 die_on_error
 proceed
 
