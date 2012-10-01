@@ -88,6 +88,8 @@ proceed
 
 
 message "Defining a few convenient aliases in /etc/profile"
+echo -e "\n\n" >> /etc/profile
+die_on_error
 echo "alias ll='ls -lFh --color=auto'" >> /etc/profile
 die_on_error
 echo "alias la='ls -lAFh --color=auto'" >> /etc/profile

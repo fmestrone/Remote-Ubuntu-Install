@@ -158,11 +158,13 @@ proceed
 message "Setting up $MOUNTDIR/etc/fstab"
 (
 cat <<FSTABTEXT
-proc		/proc		proc	defaults			0 0
-sysfs		/sys		sysfs	defaults			0 0
-devpts		/dev/pts	devpts	defaults			0 0
-/dev/$SYS_PARTITION	/		ext3	defaults,errors=remount-ro	0 1
-/dev/$SWP_PARTITION	none		swap	sw				0 0
+# device name		mount point		fs-type		options						dump-freq	pass-num
+proc				/proc			proc		defaults					0			0
+sysfs				/sys			sysfs		defaults					0			0
+devpts				/dev/pts		devpts		defaults					0			0
+/dev/$SYS_PARTITION	/				ext3		defaults,errors=remount-ro	0			1
+/dev/$SWP_PARTITION	none			swap		sw							0			0
+
 FSTABTEXT
 ) > $MOUNTDIR/etc/fstab
 die_on_error
