@@ -25,6 +25,24 @@ if [ "$SWP_PARTITION" = "" ]; then
 fi
 proceed
 
+message "Checking whether USER_NAME has been set"
+if [ "$USER_NAME" = "" ]; then
+	die_with_error
+fi
+proceed
+
+message "Checking whether TARGET_HOSTNAME has been set"
+if [ "$TARGET_HOSTNAME" = "" ]; then
+	die_with_error
+fi
+proceed
+
+message "Checking whether TARGET_DOMAIN has been set"
+if [ "$TARGET_DOMAIN" = "" ]; then
+	die_with_error
+fi
+proceed
+
 
 # Format the system partition
 
