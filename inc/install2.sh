@@ -97,8 +97,8 @@ die_on_error
 proceed
 
 
-message "Installing the binutils, zip, unzip, and vim packages"
-apt-get -y install binutils zip unzip vim
+message "Installing the binutils, zip, unzip, git, and vim packages"
+apt-get -y install binutils zip unzip git vim
 die_on_error
 proceed
 
